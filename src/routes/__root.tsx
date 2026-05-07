@@ -73,14 +73,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "SP Tiffin Service" },
+      { name: "description", content: "Nova Order is a futuristic restaurant web app for seamless customer ordering and admin management." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "SP Tiffin Service" },
+      { property: "og:description", content: "Nova Order is a futuristic restaurant web app for seamless customer ordering and admin management." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "SP Tiffin Service" },
+      { name: "twitter:description", content: "Nova Order is a futuristic restaurant web app for seamless customer ordering and admin management." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/6a28e3c0-88c9-4d5a-acc5-55a77a0ba4ce/id-preview-999edad2--0a02d1c1-69a5-4391-b3e4-79895359a2fc.lovable.app-1778157033086.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/6a28e3c0-88c9-4d5a-acc5-55a77a0ba4ce/id-preview-999edad2--0a02d1c1-69a5-4391-b3e4-79895359a2fc.lovable.app-1778157033086.png" },
     ],
     links: [
       {
