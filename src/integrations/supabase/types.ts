@@ -50,6 +50,72 @@ export type Database = {
         }
         Relationships: []
       }
+      blogs: {
+        Row: {
+          author: string | null
+          content: string
+          created_at: string
+          excerpt: string | null
+          id: string
+          image_url: string | null
+          published: boolean
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          author?: string | null
+          content?: string
+          created_at?: string
+          excerpt?: string | null
+          id?: string
+          image_url?: string | null
+          published?: boolean
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          author?: string | null
+          content?: string
+          created_at?: string
+          excerpt?: string | null
+          id?: string
+          image_url?: string | null
+          published?: boolean
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      feedback: {
+        Row: {
+          approved: boolean
+          created_at: string
+          email: string | null
+          id: string
+          message: string
+          name: string
+          rating: number
+        }
+        Insert: {
+          approved?: boolean
+          created_at?: string
+          email?: string | null
+          id?: string
+          message: string
+          name: string
+          rating?: number
+        }
+        Update: {
+          approved?: boolean
+          created_at?: string
+          email?: string | null
+          id?: string
+          message?: string
+          name?: string
+          rating?: number
+        }
+        Relationships: []
+      }
       menu_items: {
         Row: {
           available: boolean
