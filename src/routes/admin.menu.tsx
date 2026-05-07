@@ -69,7 +69,8 @@ function MenuAdmin() {
   };
 
   const toggle = async (it: Item, key: "available" | "in_stock" | "trending") => {
-    await supabase.from("menu_items").update({ [key]: !it[key] }).eq("id", it.id);
+    const patch: Partial<Item> = { [key]: !it[key] } as Partial<Item>;
+    await supabase.from("menu_items").update(patch).eq("id", it.id);
     load();
   };
 
