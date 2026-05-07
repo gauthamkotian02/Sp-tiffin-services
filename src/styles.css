@@ -62,26 +62,45 @@
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
+  /* Dark glass + subtle neon — the app is dark-first */
+  --radius: 1rem;
+  --background: oklch(0.14 0.02 270);
+  --foreground: oklch(0.97 0.01 250);
+  --card: oklch(0.19 0.025 270 / 0.6);
+  --card-foreground: oklch(0.97 0.01 250);
+  --popover: oklch(0.18 0.025 270);
+  --popover-foreground: oklch(0.97 0.01 250);
+  --primary: oklch(0.78 0.18 195);
+  --primary-foreground: oklch(0.12 0.02 270);
+  --secondary: oklch(0.24 0.03 280);
+  --secondary-foreground: oklch(0.97 0.01 250);
+  --muted: oklch(0.22 0.025 270);
+  --muted-foreground: oklch(0.72 0.03 260);
+  --accent: oklch(0.7 0.22 340);
+  --accent-foreground: oklch(0.12 0.02 270);
+  --destructive: oklch(0.65 0.22 25);
+  --destructive-foreground: oklch(0.98 0.01 250);
+  --border: oklch(0.97 0.01 250 / 0.08);
+  --input: oklch(0.97 0.01 250 / 0.08);
+  --ring: oklch(0.78 0.18 195 / 0.6);
+  --whatsapp: oklch(0.74 0.18 150);
+  --whatsapp-foreground: oklch(0.12 0.02 270);
+
+  --neon-cyan: oklch(0.82 0.18 195);
+  --neon-magenta: oklch(0.7 0.25 340);
+  --neon-violet: oklch(0.65 0.22 295);
+
+  --gradient-hero: radial-gradient(ellipse at 20% 0%, oklch(0.7 0.25 340 / 0.35), transparent 55%),
+                   radial-gradient(ellipse at 80% 30%, oklch(0.78 0.18 195 / 0.3), transparent 55%),
+                   linear-gradient(180deg, oklch(0.12 0.02 270), oklch(0.09 0.02 270));
+  --gradient-neon: linear-gradient(135deg, var(--neon-cyan), var(--neon-magenta));
+  --gradient-card: linear-gradient(145deg, oklch(0.97 0.01 250 / 0.06), oklch(0.97 0.01 250 / 0.02));
+
+  --shadow-neon: 0 0 0 1px oklch(0.78 0.18 195 / 0.25), 0 10px 40px -10px oklch(0.78 0.18 195 / 0.45);
+  --shadow-glow: 0 20px 60px -20px oklch(0.7 0.25 340 / 0.5);
+  --shadow-glass: 0 1px 0 0 oklch(0.97 0.01 250 / 0.08) inset, 0 30px 60px -30px oklch(0 0 0 / 0.6);
+
+  --transition-smooth: 400ms cubic-bezier(0.22, 1, 0.36, 1);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -138,7 +157,42 @@
   }
 
   body {
-    background-color: var(--color-background);
+    background: var(--gradient-hero);
+    background-attachment: fixed;
     color: var(--color-foreground);
+    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Space Grotesk', 'Inter', sans-serif;
+    letter-spacing: -0.02em;
   }
 }
+
+@layer utilities {
+  .glass {
+    background: var(--gradient-card);
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-glass);
+  }
+  .neon-text {
+    background: var(--gradient-neon);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .neon-border {
+    box-shadow: var(--shadow-neon);
+  }
+  .grid-bg {
+    background-image:
+      linear-gradient(oklch(0.97 0.01 250 / 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, oklch(0.97 0.01 250 / 0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
