@@ -18,7 +18,7 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
         neon: "relative text-primary-foreground bg-[image:var(--gradient-neon)] shadow-[var(--shadow-neon)] hover:brightness-110 hover:-translate-y-0.5 transition-all duration-300",
         glass: "glass text-foreground hover:bg-white/10 transition-all duration-300",
-        whatsapp: "bg-[oklch(var(--whatsapp))] text-[oklch(var(--whatsapp-foreground))] shadow-[0_10px_30px_-10px_oklch(0.74_0.18_150/0.6)] hover:brightness-110 hover:-translate-y-0.5 transition-all duration-300",
+        whatsapp: "bg-[var(--whatsapp)] text-[var(--whatsapp-foreground)] shadow-[0_10px_30px_-10px_oklch(0.74_0.18_150/0.6)] hover:brightness-110 hover:-translate-y-0.5 transition-all duration-300",
       },
       size: {
         default: "h-9 px-4 py-2",
