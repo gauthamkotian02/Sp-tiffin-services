@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Minus, Plus, Trash2, X, MessageCircle } from "lucide-react";
 import { useCart } from "@/store/cart";
 import { WHATSAPP_NUMBER, RESTAURANT_NAME } from "@/data/menu";
+import { supabase } from "@/integrations/supabase/client";
 
 function buildWhatsAppMessage(
   lines: ReturnType<typeof useCart>["lines"],
@@ -32,9 +33,36 @@ function buildWhatsAppMessage(
 export function CartDrawer({ open, onClose }: { open: boolean; onClose: () => void }) {
   const { lines, total, setQty, remove, clear, notes, setNotes } = useCart();
 
-  const sendOrder = () => {
+  const sendOrder = async () => {
     if (lines.length === 0) return;
     const msg = buildWhatsAppMessage(lines, total, notes);
+    // Log to DB so the admin dashboard sees it live
+    try {
+      const { data: order } = await supabase
+        .from("orders")
+        .insert({
+          total,
+          item_count: lines.reduce((s, l) => s + l.qty, 0),
+          notes: notes || null,
+          status: "received",
+        })
+        .select("id")
+        .single();
+      if (order?.id) {
+        await supabase.from("order_items").insert(
+          lines.map((l) => ({
+            order_id: order.id,
+            menu_item_id: null,
+            name: l.item.name,
+            price: l.item.price,
+            quantity: l.qty,
+            image_url: l.item.image,
+          })),
+        );
+      }
+    } catch (e) {
+      console.error("order log failed", e);
+    }
     const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
     window.open(url, "_blank");
   };
