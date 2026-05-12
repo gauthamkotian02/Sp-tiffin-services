@@ -27,6 +27,7 @@ type Settings = {
   hero_subtitle: string | null;
   hero_description: string | null;
   hero_image_url: string | null;
+  hero_video_url: string | null;
   hero_cta_primary: string | null;
   hero_cta_secondary: string | null;
 };
@@ -141,6 +142,23 @@ function SettingsAdmin() {
               </label>
               {s.hero_image_url && <button onClick={() => set("hero_image_url", null)} className="text-xs text-muted-foreground hover:text-destructive">Remove</button>}
             </div>
+          </div>
+          <div className="md:col-span-2">
+            <label className={lbl}>Hero background video (optional — overrides image)</label>
+            <div className="flex items-center gap-3">
+              {s.hero_video_url && (
+                <video src={s.hero_video_url} muted autoPlay loop playsInline className="h-20 w-32 rounded-xl object-cover" />
+              )}
+              <label className="inline-flex cursor-pointer items-center gap-2 rounded-xl border border-border bg-background/60 px-3 py-2.5 text-sm hover:bg-secondary/50">
+                <Upload className="h-4 w-4" /> {s.hero_video_url ? "Replace video" : "Upload video"}
+                <input type="file" accept="video/*" hidden onChange={async (e) => {
+                  const f = e.target.files?.[0]; if (!f) return;
+                  const url = await upload(f); set("hero_video_url", url);
+                }} />
+              </label>
+              {s.hero_video_url && <button onClick={() => set("hero_video_url", null)} className="text-xs text-muted-foreground hover:text-destructive">Remove</button>}
+            </div>
+            <p className="mt-2 text-xs text-muted-foreground">Tip: short MP4/WebM under ~10MB works best. The image is used as a poster while the video loads.</p>
           </div>
         </div>
       </section>
