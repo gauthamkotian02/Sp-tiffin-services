@@ -1,6 +1,6 @@
 import { createFileRoute, Link, Outlet, useNavigate, useRouterState } from "@tanstack/react-router";
 import * as React from "react";
-import { LayoutDashboard, UtensilsCrossed, Image as ImageIcon, ShoppingBag, LogOut, Sparkles, Newspaper } from "lucide-react";
+import { LayoutDashboard, UtensilsCrossed, Image as ImageIcon, ShoppingBag, LogOut, Sparkles, Newspaper, Settings } from "lucide-react";
 import { useAuth } from "@/lib/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { motion } from "framer-motion";
@@ -21,6 +21,7 @@ const links = [
   { to: "/admin/banners", label: "Banners", icon: ImageIcon },
   { to: "/admin/blogs", label: "Blogs", icon: Newspaper },
   { to: "/admin/orders", label: "Orders", icon: ShoppingBag },
+  { to: "/admin/settings", label: "Site Settings", icon: Settings },
 ] as const;
 
 function AdminLayout() {

@@ -2,18 +2,23 @@ import { Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { ShoppingBag, Sparkles, Shield, BookOpen, MessageSquare } from "lucide-react";
 import { useCart } from "@/store/cart";
-import { RESTAURANT_NAME } from "@/data/menu";
+import { useSiteSettings } from "@/lib/useSiteSettings";
 
 export function Navbar({ onCartClick }: { onCartClick: () => void }) {
   const { count } = useCart();
+  const s = useSiteSettings();
   return (
     <header className="sticky top-0 z-40">
       <div className="glass mx-auto mt-4 flex max-w-6xl items-center justify-between rounded-2xl px-5 py-3">
         <Link to="/" className="flex items-center gap-2">
-          <div className="grid h-9 w-9 place-items-center rounded-xl bg-[image:var(--gradient-neon)] shadow-[var(--shadow-neon)]">
-            <Sparkles className="h-5 w-5 text-primary-foreground" />
-          </div>
-          <span className="text-lg font-bold tracking-tight">{RESTAURANT_NAME}</span>
+          {s.logo_url ? (
+            <img src={s.logo_url} alt={s.brand_name} className="h-9 w-9 rounded-xl object-cover shadow-[var(--shadow-neon)]" />
+          ) : (
+            <div className="grid h-9 w-9 place-items-center rounded-xl bg-[image:var(--gradient-neon)] shadow-[var(--shadow-neon)]">
+              <Sparkles className="h-5 w-5 text-primary-foreground" />
+            </div>
+          )}
+          <span className="text-lg font-bold tracking-tight">{s.brand_name}</span>
         </Link>
         <nav className="hidden items-center gap-1 md:flex">
           <Link to="/blogs" className="inline-flex items-center gap-1.5 rounded-xl px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-secondary/50 hover:text-foreground" activeProps={{ className: "text-foreground" }}>
