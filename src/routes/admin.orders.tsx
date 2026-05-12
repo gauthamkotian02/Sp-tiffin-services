@@ -40,7 +40,7 @@ function OrdersAdmin() {
       "postgres_changes",
       { event: "INSERT", schema: "public", table: "orders" },
       (payload) => {
-        toast.success(`New order · $${Number((payload.new as any).total).toFixed(2)}`);
+        toast.success(`New order · ₹${Number((payload.new as any).total).toFixed(2)}`);
         load();
       },
     ).subscribe();
@@ -97,7 +97,7 @@ function OrdersAdmin() {
                   {o.notes && <p className="mt-2 text-xs italic text-muted-foreground">"{o.notes}"</p>}
                 </div>
                 <div className="text-right">
-                  <p className="text-2xl font-bold neon-text">${Number(o.total).toFixed(2)}</p>
+                  <p className="text-2xl font-bold neon-text">₹{Number(o.total).toFixed(2)}</p>
                   <select value={o.status} onChange={(e) => updateStatus(o.id, e.target.value)} className="mt-2 rounded-lg border border-border bg-background/60 p-1.5 text-xs">
                     {STATUSES.map((s) => <option key={s} value={s}>{s.replace(/_/g, " ")}</option>)}
                   </select>
