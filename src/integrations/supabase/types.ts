@@ -272,6 +272,66 @@ export type Database = {
         }
         Relationships: []
       }
+      site_settings: {
+        Row: {
+          address: string | null
+          brand_name: string
+          created_at: string
+          email: string | null
+          facebook_url: string | null
+          footer_about: string | null
+          id: string
+          instagram_url: string | null
+          logo_url: string | null
+          phone: string | null
+          pincode: string | null
+          singleton: boolean
+          tagline: string | null
+          theme_accent: string
+          theme_primary: string
+          twitter_url: string | null
+          updated_at: string
+        }
+        Insert: {
+          address?: string | null
+          brand_name?: string
+          created_at?: string
+          email?: string | null
+          facebook_url?: string | null
+          footer_about?: string | null
+          id?: string
+          instagram_url?: string | null
+          logo_url?: string | null
+          phone?: string | null
+          pincode?: string | null
+          singleton?: boolean
+          tagline?: string | null
+          theme_accent?: string
+          theme_primary?: string
+          twitter_url?: string | null
+          updated_at?: string
+        }
+        Update: {
+          address?: string | null
+          brand_name?: string
+          created_at?: string
+          email?: string | null
+          facebook_url?: string | null
+          footer_about?: string | null
+          id?: string
+          instagram_url?: string | null
+          logo_url?: string | null
+          phone?: string | null
+          pincode?: string | null
+          singleton?: boolean
+          tagline?: string | null
+          theme_accent?: string
+          theme_primary?: string
+          twitter_url?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string
