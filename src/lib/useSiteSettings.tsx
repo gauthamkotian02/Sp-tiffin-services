@@ -15,6 +15,13 @@ export type SiteSettings = {
   twitter_url: string | null;
   theme_primary: string;
   theme_accent: string;
+  hero_eyebrow: string | null;
+  hero_title: string | null;
+  hero_subtitle: string | null;
+  hero_description: string | null;
+  hero_image_url: string | null;
+  hero_cta_primary: string | null;
+  hero_cta_secondary: string | null;
 };
 
 const DEFAULTS: SiteSettings = {
@@ -31,6 +38,13 @@ const DEFAULTS: SiteSettings = {
   twitter_url: null,
   theme_primary: "#22d3ee",
   theme_accent: "#ec4899",
+  hero_eyebrow: null,
+  hero_title: null,
+  hero_subtitle: null,
+  hero_description: null,
+  hero_image_url: null,
+  hero_cta_primary: null,
+  hero_cta_secondary: null,
 };
 
 const Ctx = React.createContext<SiteSettings>(DEFAULTS);

@@ -22,6 +22,13 @@ type Settings = {
   twitter_url: string | null;
   theme_primary: string;
   theme_accent: string;
+  hero_eyebrow: string | null;
+  hero_title: string | null;
+  hero_subtitle: string | null;
+  hero_description: string | null;
+  hero_image_url: string | null;
+  hero_cta_primary: string | null;
+  hero_cta_secondary: string | null;
 };
 
 const inp = "w-full rounded-xl border border-border bg-background/60 p-2.5 text-sm outline-none focus:border-[var(--neon-cyan)]";
@@ -88,6 +95,51 @@ function SettingsAdmin() {
                 }} />
               </label>
               {s.logo_url && <button onClick={() => set("logo_url", null)} className="text-xs text-muted-foreground hover:text-destructive">Remove</button>}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="glass space-y-4 rounded-2xl p-5">
+        <h3 className="text-sm font-semibold">Hero / banner section</h3>
+        <p className="text-xs text-muted-foreground">Edit the headline area shown at the top of the homepage. Use <code className="rounded bg-secondary/50 px-1">**word**</code> in the title to highlight a word in the brand color.</p>
+        <div className="grid gap-4 md:grid-cols-2">
+          <div>
+            <label className={lbl}>Eyebrow tag</label>
+            <input className={inp} value={s.hero_eyebrow ?? ""} placeholder="Order via WhatsApp · No login needed" onChange={(e) => set("hero_eyebrow", e.target.value)} />
+          </div>
+          <div>
+            <label className={lbl}>Subtitle (second line)</label>
+            <input className={inp} value={s.hero_subtitle ?? ""} placeholder="Order in seconds." onChange={(e) => set("hero_subtitle", e.target.value)} />
+          </div>
+          <div className="md:col-span-2">
+            <label className={lbl}>Title (first line)</label>
+            <input className={inp} value={s.hero_title ?? ""} placeholder="Taste the **future**." onChange={(e) => set("hero_title", e.target.value)} />
+          </div>
+          <div className="md:col-span-2">
+            <label className={lbl}>Description</label>
+            <textarea className={inp} rows={3} value={s.hero_description ?? ""} placeholder="Describe your kitchen…" onChange={(e) => set("hero_description", e.target.value)} />
+          </div>
+          <div>
+            <label className={lbl}>Primary button label</label>
+            <input className={inp} value={s.hero_cta_primary ?? ""} placeholder="Browse Menu" onChange={(e) => set("hero_cta_primary", e.target.value)} />
+          </div>
+          <div>
+            <label className={lbl}>Secondary button label</label>
+            <input className={inp} value={s.hero_cta_secondary ?? ""} placeholder="Tonight's Specials" onChange={(e) => set("hero_cta_secondary", e.target.value)} />
+          </div>
+          <div className="md:col-span-2">
+            <label className={lbl}>Hero image</label>
+            <div className="flex items-center gap-3">
+              {s.hero_image_url && <img src={s.hero_image_url} alt="hero" className="h-20 w-32 rounded-xl object-cover" />}
+              <label className="inline-flex cursor-pointer items-center gap-2 rounded-xl border border-border bg-background/60 px-3 py-2.5 text-sm hover:bg-secondary/50">
+                <Upload className="h-4 w-4" /> {s.hero_image_url ? "Replace image" : "Upload image"}
+                <input type="file" accept="image/*" hidden onChange={async (e) => {
+                  const f = e.target.files?.[0]; if (!f) return;
+                  const url = await upload(f); set("hero_image_url", url);
+                }} />
+              </label>
+              {s.hero_image_url && <button onClick={() => set("hero_image_url", null)} className="text-xs text-muted-foreground hover:text-destructive">Remove</button>}
             </div>
           </div>
         </div>
