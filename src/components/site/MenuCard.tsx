@@ -10,10 +10,9 @@ export function MenuCard({ item }: { item: MenuItem }) {
     <motion.article
       layout
       initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
+      animate={{ opacity: 1, y: 0 }}
       whileHover={{ y: -6 }}
-      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
       className="group glass relative flex flex-col overflow-hidden rounded-2xl"
     >
       <div className="relative aspect-[4/3] overflow-hidden">
