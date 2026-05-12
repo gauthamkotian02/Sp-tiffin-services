@@ -1,14 +1,43 @@
 import * as React from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Search } from "lucide-react";
-import { CATEGORIES, MENU } from "@/data/menu";
+import { CATEGORIES, MENU, type MenuItem } from "@/data/menu";
+import { supabase } from "@/integrations/supabase/client";
 import { MenuCard } from "./MenuCard";
 
 export function MenuSection() {
   const [cat, setCat] = React.useState<(typeof CATEGORIES)[number]>("All");
   const [q, setQ] = React.useState("");
+  const [menu, setMenu] = React.useState<MenuItem[]>(MENU);
 
-  const items = MENU.filter(
+  React.useEffect(() => {
+    let mounted = true;
+    supabase
+      .from("menu_items")
+      .select("*")
+      .order("sort_order", { ascending: true })
+      .then(({ data, error }) => {
+        if (!mounted || error || !data || data.length === 0) return;
+        setMenu(
+          data.map((r: any) => ({
+            id: r.id,
+            name: r.name,
+            description: r.description ?? "",
+            price: Number(r.price),
+            category: r.category,
+            image: r.image_url || "",
+            available: r.available && r.in_stock,
+            trending: r.trending,
+            combo: r.combo ?? undefined,
+          })),
+        );
+      });
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+  const items = menu.filter(
     (i) =>
       (cat === "All" || i.category === cat) &&
       (q.trim() === "" ||
