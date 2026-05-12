@@ -27,6 +27,7 @@ export function Hero() {
   const ctaPrimary = s.hero_cta_primary || "Browse Menu";
   const ctaSecondary = s.hero_cta_secondary || "Tonight's Specials";
   const image = s.hero_image_url || heroImg;
+  const video = s.hero_video_url || null;
   return (
     <section className="relative mx-auto mt-10 max-w-6xl px-4">
       <div className="grid-bg pointer-events-none absolute inset-0 -z-10 opacity-40 [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)]" />
@@ -90,13 +91,25 @@ export function Hero() {
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
             className="overflow-hidden rounded-[2rem] border border-border shadow-[var(--shadow-glow)]"
           >
-            <img
-              src={image}
-              alt={s.hero_title || "Signature dishes under neon light"}
-              width={1536}
-              height={1024}
-              className="h-full w-full object-cover"
-            />
+            {video ? (
+              <video
+                src={video}
+                poster={image}
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="h-full w-full object-cover"
+              />
+            ) : (
+              <img
+                src={image}
+                alt={s.hero_title || "Signature dishes under neon light"}
+                width={1536}
+                height={1024}
+                className="h-full w-full object-cover"
+              />
+            )}
           </motion.div>
         </motion.div>
       </div>
