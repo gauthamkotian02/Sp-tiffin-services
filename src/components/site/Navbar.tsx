@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { ShoppingBag, Sparkles, Shield, BookOpen, MessageSquare, ChefHat } from "lucide-react";
+import { ShoppingBag, Sparkles, Shield, BookOpen, MessageSquare } from "lucide-react";
 import { useCart } from "@/store/cart";
 import { RESTAURANT_NAME } from "@/data/menu";
 
@@ -18,9 +18,6 @@ export function Navbar({ onCartClick }: { onCartClick: () => void }) {
         <nav className="hidden items-center gap-1 md:flex">
           <Link to="/blogs" className="inline-flex items-center gap-1.5 rounded-xl px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-secondary/50 hover:text-foreground" activeProps={{ className: "text-foreground" }}>
             <BookOpen className="h-4 w-4" /> Blogs
-          </Link>
-          <Link to="/recipes" className="inline-flex items-center gap-1.5 rounded-xl px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-secondary/50 hover:text-foreground" activeProps={{ className: "text-foreground" }}>
-            <ChefHat className="h-4 w-4" /> Recipes
           </Link>
           <Link to="/feedback" className="inline-flex items-center gap-1.5 rounded-xl px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-secondary/50 hover:text-foreground" activeProps={{ className: "text-foreground" }}>
             <MessageSquare className="h-4 w-4" /> Feedback
@@ -56,7 +53,6 @@ export function Navbar({ onCartClick }: { onCartClick: () => void }) {
       </div>
       <nav className="mx-auto mt-2 flex max-w-6xl items-center gap-2 px-4 md:hidden">
         <Link to="/blogs" className="inline-flex items-center gap-1.5 rounded-full border border-border px-3 py-1.5 text-xs text-muted-foreground"><BookOpen className="h-3.5 w-3.5" /> Blogs</Link>
-        <Link to="/recipes" className="inline-flex items-center gap-1.5 rounded-full border border-border px-3 py-1.5 text-xs text-muted-foreground"><ChefHat className="h-3.5 w-3.5" /> Recipes</Link>
         <Link to="/feedback" className="inline-flex items-center gap-1.5 rounded-full border border-border px-3 py-1.5 text-xs text-muted-foreground"><MessageSquare className="h-3.5 w-3.5" /> Feedback</Link>
       </nav>
     </header>
