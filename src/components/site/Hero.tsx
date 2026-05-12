@@ -2,8 +2,31 @@ import { motion } from "framer-motion";
 import heroImg from "@/assets/hero.jpg";
 import { Button } from "@/components/ui/button";
 import { ArrowDown, Flame } from "lucide-react";
+import { useSiteSettings } from "@/lib/useSiteSettings";
+
+function renderHighlighted(text: string) {
+  // Replace **word** with neon-text span
+  const parts = text.split(/(\*\*[^*]+\*\*)/g);
+  return parts.map((p, i) =>
+    p.startsWith("**") && p.endsWith("**") ? (
+      <span key={i} className="neon-text">{p.slice(2, -2)}</span>
+    ) : (
+      <span key={i}>{p}</span>
+    ),
+  );
+}
 
 export function Hero() {
+  const s = useSiteSettings();
+  const eyebrow = s.hero_eyebrow || "Order via WhatsApp · No login needed";
+  const title = s.hero_title || "Taste the **future**.";
+  const subtitle = s.hero_subtitle || "Order in seconds.";
+  const description =
+    s.hero_description ||
+    "A neon-lit kitchen serving signature smash burgers, ramen and wood-fired pies — sent straight to our chefs through WhatsApp.";
+  const ctaPrimary = s.hero_cta_primary || "Browse Menu";
+  const ctaSecondary = s.hero_cta_secondary || "Tonight's Specials";
+  const image = s.hero_image_url || heroImg;
   return (
     <section className="relative mx-auto mt-10 max-w-6xl px-4">
       <div className="grid-bg pointer-events-none absolute inset-0 -z-10 opacity-40 [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)]" />
@@ -16,7 +39,7 @@ export function Hero() {
             className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary/40 px-3 py-1 text-xs text-muted-foreground"
           >
             <Flame className="h-3.5 w-3.5 text-[var(--neon-magenta)]" />
-            Order via WhatsApp · No login needed
+            {eyebrow}
           </motion.div>
           <motion.h1
             initial={{ opacity: 0, y: 16 }}
@@ -24,8 +47,8 @@ export function Hero() {
             transition={{ delay: 0.1, duration: 0.7 }}
             className="mt-5 text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl"
           >
-            Taste the <span className="neon-text">future</span>.<br />
-            Order in seconds.
+            {renderHighlighted(title)}<br />
+            {subtitle}
           </motion.h1>
           <motion.p
             initial={{ opacity: 0 }}
@@ -33,8 +56,7 @@ export function Hero() {
             transition={{ delay: 0.25, duration: 0.7 }}
             className="mt-5 max-w-md text-base text-muted-foreground"
           >
-            A neon-lit kitchen serving signature smash burgers, ramen and wood-fired pies — sent
-            straight to our chefs through WhatsApp.
+            {description}
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -49,10 +71,10 @@ export function Hero() {
                 document.getElementById("menu")?.scrollIntoView({ behavior: "smooth" })
               }
             >
-              Browse Menu <ArrowDown className="h-4 w-4" />
+              {ctaPrimary} <ArrowDown className="h-4 w-4" />
             </Button>
             <Button variant="glass" size="lg">
-              Tonight's Specials
+              {ctaSecondary}
             </Button>
           </motion.div>
         </div>
@@ -69,8 +91,8 @@ export function Hero() {
             className="overflow-hidden rounded-[2rem] border border-border shadow-[var(--shadow-glow)]"
           >
             <img
-              src={heroImg}
-              alt="Signature dishes under neon light"
+              src={image}
+              alt={s.hero_title || "Signature dishes under neon light"}
               width={1536}
               height={1024}
               className="h-full w-full object-cover"
