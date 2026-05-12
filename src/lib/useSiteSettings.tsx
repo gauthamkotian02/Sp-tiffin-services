@@ -20,6 +20,7 @@ export type SiteSettings = {
   hero_subtitle: string | null;
   hero_description: string | null;
   hero_image_url: string | null;
+  hero_video_url: string | null;
   hero_cta_primary: string | null;
   hero_cta_secondary: string | null;
 };
@@ -43,6 +44,7 @@ const DEFAULTS: SiteSettings = {
   hero_subtitle: null,
   hero_description: null,
   hero_image_url: null,
+  hero_video_url: null,
   hero_cta_primary: null,
   hero_cta_secondary: null,
 };
