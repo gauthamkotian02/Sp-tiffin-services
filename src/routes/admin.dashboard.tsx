@@ -83,8 +83,8 @@ function Dashboard() {
   }, [load]);
 
   const cards = [
-    { label: "Today's revenue", value: `$${stats.todayRevenue.toFixed(2)}`, raw: stats.todayRevenue, icon: DollarSign, color: "var(--neon-cyan)" },
-    { label: "This month", value: `$${stats.monthRevenue.toFixed(2)}`, raw: stats.monthRevenue, icon: TrendingUp, color: "var(--neon-magenta)" },
+    { label: "Today's revenue", value: `₹${stats.todayRevenue.toFixed(2)}`, raw: stats.todayRevenue, icon: DollarSign, color: "var(--neon-cyan)" },
+    { label: "This month", value: `₹${stats.monthRevenue.toFixed(2)}`, raw: stats.monthRevenue, icon: TrendingUp, color: "var(--neon-magenta)" },
     { label: "Today's orders", value: `${stats.todayOrders}`, raw: stats.todayOrders, icon: ShoppingBag, color: "var(--neon-violet)" },
     { label: "All-time orders", value: `${stats.totalOrders}`, raw: stats.totalOrders, icon: Flame, color: "var(--neon-cyan)" },
   ];
@@ -144,7 +144,7 @@ function Dashboard() {
 
 function Counter({ label, value, raw, icon: Icon, color, delay }: any) {
   const v = useCount(raw);
-  const display = typeof raw === "number" && value.startsWith("$") ? `$${v.toFixed(2)}` : `${Math.round(v)}`;
+  const display = typeof raw === "number" && value.startsWith("₹") ? `₹${v.toFixed(2)}` : `${Math.round(v)}`;
   return (
     <motion.div
       initial={{ opacity: 0, y: 12 }}

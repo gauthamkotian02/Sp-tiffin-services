@@ -46,7 +46,7 @@ export function MenuCard({ item }: { item: MenuItem }) {
         <div className="flex items-start justify-between gap-3">
           <h3 className="text-base font-semibold leading-tight">{item.name}</h3>
           <span className="shrink-0 rounded-lg border border-border px-2 py-1 text-sm font-bold neon-text">
-            ${item.price.toFixed(2)}
+            ₹{item.price.toFixed(2)}
           </span>
         </div>
         <p className="line-clamp-2 text-xs text-muted-foreground">{item.description}</p>

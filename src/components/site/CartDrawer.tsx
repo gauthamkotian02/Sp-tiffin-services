@@ -12,7 +12,7 @@ function buildWhatsAppMessage(
   const lines_ = lines
     .map(
       (l, i) =>
-        `${i + 1}. ${l.item.name} × ${l.qty} — $${(l.item.price * l.qty).toFixed(2)}`,
+        `${i + 1}. ${l.item.name} × ${l.qty} — ₹${(l.item.price * l.qty).toFixed(2)}`,
     )
     .join("\n");
   const stamp = new Date().toLocaleString();
@@ -125,7 +125,7 @@ export function CartDrawer({ open, onClose }: { open: boolean; onClose: () => vo
                             </button>
                           </div>
                           <p className="text-xs text-muted-foreground">
-                            ${l.item.price.toFixed(2)} each
+                            ₹{l.item.price.toFixed(2)} each
                           </p>
                           <div className="mt-auto flex items-center justify-between">
                             <div className="inline-flex items-center rounded-lg border border-border">
@@ -146,7 +146,7 @@ export function CartDrawer({ open, onClose }: { open: boolean; onClose: () => vo
                               </button>
                             </div>
                             <span className="text-sm font-bold neon-text">
-                              ${(l.item.price * l.qty).toFixed(2)}
+                              ₹{(l.item.price * l.qty).toFixed(2)}
                             </span>
                           </div>
                         </div>
@@ -181,7 +181,7 @@ export function CartDrawer({ open, onClose }: { open: boolean; onClose: () => vo
                   animate={{ scale: 1, opacity: 1 }}
                   className="text-2xl font-bold neon-text"
                 >
-                  ${total.toFixed(2)}
+                  ₹{total.toFixed(2)}
                 </motion.span>
               </div>
               <button

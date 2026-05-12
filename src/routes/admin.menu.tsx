@@ -92,7 +92,7 @@ function MenuAdmin() {
               <div className="flex items-start justify-between gap-3">
                 <div>
                   <p className="text-sm font-semibold">{it.name}</p>
-                  <p className="text-xs text-muted-foreground">{it.category} · ${Number(it.price).toFixed(2)}</p>
+                  <p className="text-xs text-muted-foreground">{it.category} · ₹{Number(it.price).toFixed(2)}</p>
                 </div>
                 <div className="flex gap-1">
                   <button onClick={() => setEditing(it)} className="rounded-lg p-1.5 hover:bg-secondary/50"><Edit3 className="h-4 w-4" /></button>
