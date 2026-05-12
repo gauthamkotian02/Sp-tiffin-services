@@ -4,6 +4,7 @@ import { CartProvider } from "@/store/cart";
 import { Navbar } from "@/components/site/Navbar";
 import { Hero } from "@/components/site/Hero";
 import { MenuSection } from "@/components/site/MenuSection";
+import { BannerCarousel } from "@/components/site/BannerCarousel";
 import { CartDrawer } from "@/components/site/CartDrawer";
 import { RESTAURANT_NAME } from "@/data/menu";
 
@@ -33,6 +34,7 @@ function Index() {
       <main className="relative min-h-screen pb-24">
         <Navbar onCartClick={() => setOpen(true)} />
         <Hero />
+        <BannerCarousel />
         <MenuSection />
         <footer className="mx-auto mt-24 max-w-6xl px-4 text-center text-xs text-muted-foreground">
           © {new Date().getFullYear()} {RESTAURANT_NAME}. Crafted with neon & spice.
