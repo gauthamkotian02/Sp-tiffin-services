@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as RecipesRouteImport } from './routes/recipes'
 import { Route as FeedbackRouteImport } from './routes/feedback'
 import { Route as BlogsRouteImport } from './routes/blogs'
 import { Route as AdminRouteImport } from './routes/admin'
@@ -20,6 +21,11 @@ import { Route as AdminDashboardRouteImport } from './routes/admin.dashboard'
 import { Route as AdminBlogsRouteImport } from './routes/admin.blogs'
 import { Route as AdminBannersRouteImport } from './routes/admin.banners'
 
+const RecipesRoute = RecipesRouteImport.update({
+  id: '/recipes',
+  path: '/recipes',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FeedbackRoute = FeedbackRouteImport.update({
   id: '/feedback',
   path: '/feedback',
@@ -76,6 +82,7 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AdminRouteWithChildren
   '/blogs': typeof BlogsRoute
   '/feedback': typeof FeedbackRoute
+  '/recipes': typeof RecipesRoute
   '/admin/banners': typeof AdminBannersRoute
   '/admin/blogs': typeof AdminBlogsRoute
   '/admin/dashboard': typeof AdminDashboardRoute
@@ -88,6 +95,7 @@ export interface FileRoutesByTo {
   '/admin': typeof AdminRouteWithChildren
   '/blogs': typeof BlogsRoute
   '/feedback': typeof FeedbackRoute
+  '/recipes': typeof RecipesRoute
   '/admin/banners': typeof AdminBannersRoute
   '/admin/blogs': typeof AdminBlogsRoute
   '/admin/dashboard': typeof AdminDashboardRoute
@@ -101,6 +109,7 @@ export interface FileRoutesById {
   '/admin': typeof AdminRouteWithChildren
   '/blogs': typeof BlogsRoute
   '/feedback': typeof FeedbackRoute
+  '/recipes': typeof RecipesRoute
   '/admin/banners': typeof AdminBannersRoute
   '/admin/blogs': typeof AdminBlogsRoute
   '/admin/dashboard': typeof AdminDashboardRoute
@@ -115,6 +124,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/blogs'
     | '/feedback'
+    | '/recipes'
     | '/admin/banners'
     | '/admin/blogs'
     | '/admin/dashboard'
@@ -127,6 +137,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/blogs'
     | '/feedback'
+    | '/recipes'
     | '/admin/banners'
     | '/admin/blogs'
     | '/admin/dashboard'
@@ -139,6 +150,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/blogs'
     | '/feedback'
+    | '/recipes'
     | '/admin/banners'
     | '/admin/blogs'
     | '/admin/dashboard'
@@ -152,10 +164,18 @@ export interface RootRouteChildren {
   AdminRoute: typeof AdminRouteWithChildren
   BlogsRoute: typeof BlogsRoute
   FeedbackRoute: typeof FeedbackRoute
+  RecipesRoute: typeof RecipesRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/recipes': {
+      id: '/recipes'
+      path: '/recipes'
+      fullPath: '/recipes'
+      preLoaderRoute: typeof RecipesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/feedback': {
       id: '/feedback'
       path: '/feedback'
@@ -254,6 +274,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminRoute: AdminRouteWithChildren,
   BlogsRoute: BlogsRoute,
   FeedbackRoute: FeedbackRoute,
+  RecipesRoute: RecipesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
