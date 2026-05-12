@@ -5,6 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Navbar } from "@/components/site/Navbar";
 import { CartProvider } from "@/store/cart";
 import { CartDrawer } from "@/components/site/CartDrawer";
+import { BannerCarousel } from "@/components/site/BannerCarousel";
 import { Calendar, User } from "lucide-react";
 
 export const Route = createFileRoute("/blogs")({
@@ -35,6 +36,7 @@ function BlogsPage() {
     <CartProvider>
       <main className="relative min-h-screen pb-24">
         <Navbar onCartClick={() => setOpen(true)} />
+        <BannerCarousel />
         <section className="mx-auto mt-12 max-w-6xl px-4">
           <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">Journal</p>
           <h1 className="mt-2 text-4xl font-bold sm:text-5xl">From the <span className="neon-text">kitchen</span></h1>
