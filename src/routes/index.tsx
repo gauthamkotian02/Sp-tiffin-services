@@ -6,7 +6,7 @@ import { Hero } from "@/components/site/Hero";
 import { MenuSection } from "@/components/site/MenuSection";
 import { BannerCarousel } from "@/components/site/BannerCarousel";
 import { CartDrawer } from "@/components/site/CartDrawer";
-import { RESTAURANT_NAME } from "@/data/menu";
+import { SiteFooter } from "@/components/site/SiteFooter";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -36,9 +36,7 @@ function Index() {
         <Hero />
         <BannerCarousel />
         <MenuSection />
-        <footer className="mx-auto mt-24 max-w-6xl px-4 text-center text-xs text-muted-foreground">
-          © {new Date().getFullYear()} {RESTAURANT_NAME}. Crafted with neon & spice.
-        </footer>
+        <SiteFooter />
         <CartDrawer open={open} onClose={() => setOpen(false)} />
       </main>
     </CartProvider>
