@@ -1,5 +1,5 @@
 import * as React from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { Search } from "lucide-react";
 import { CATEGORIES, MENU, type MenuItem } from "@/data/menu";
 import { supabase } from "@/integrations/supabase/client";
@@ -88,13 +88,11 @@ export function MenuSection() {
         ))}
       </div>
 
-      <motion.div layout className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        <AnimatePresence mode="popLayout">
-          {items.map((i) => (
-            <MenuCard key={i.id} item={i} />
-          ))}
-        </AnimatePresence>
-      </motion.div>
+      <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {items.map((i) => (
+          <MenuCard key={i.id} item={i} />
+        ))}
+      </div>
 
       {items.length === 0 && (
         <p className="mt-12 text-center text-sm text-muted-foreground">No dishes match your search.</p>
