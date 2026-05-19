@@ -42,13 +42,15 @@ function Dashboard() {
     const since = subDays(startOfDay(new Date()), 29);
     const { data: orders } = await supabase
       .from("orders")
-      .select("id, total, created_at")
+      .select("id, total, created_at, status")
+      .neq("status", "cancelled")
       .gte("created_at", since.toISOString());
 
     const { data: items } = await supabase
       .from("order_items")
-      .select("name, quantity, orders!inner(created_at)")
-      .gte("orders.created_at", since.toISOString());
+      .select("name, quantity, orders!inner(created_at, status)")
+      .gte("orders.created_at", since.toISOString())
+      .neq("orders.status", "cancelled");
 
     const todayKey = format(new Date(), "yyyy-MM-dd");
     const monthKey = format(new Date(), "yyyy-MM");
